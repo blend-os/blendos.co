@@ -1,0 +1,81 @@
+---
+import { Icon } from 'astro-icon';
+
+const items = [
+	[
+		{
+			title: 'Immutable',
+			description:
+				'blendOS is an immutable operating system. This means your filesystem is read-only, thus resulting in stable experience.',
+			icon: 'clarity:hard-disk-solid',
+		},
+		{
+			title: 'Apps from any distribution',
+			description:
+				'You can use any of the hundreds of thousands of apps from any of the distributions supported by blendOS.',
+			icon: 'tabler:apps',
+		},
+		{
+			title: 'Use any package manager directly',
+			description:
+				'You can use apt/apt-get, dnf/yum, pacman and yay all together from the blendOS shell, just like you\'d use them on their native distributions (Ubuntu, Fedora, and Arch respectively).',
+			icon: 'mdi:billiards-triangle',
+		}
+	],
+	[
+		{
+			title: 'DE support',
+			description:
+				'GNOME\'s the officially supported desktop environment, but you can also choose other desktop environments such as KDE Plasma and XFCE at the time of installation (for users who\'re familar with the blendOS setup).',
+			icon: 'tabler:wand',
+		},
+		{
+			title: 'Individual sessions for distros',
+			description:
+				'Besides the default session, you can also install a desktop environment from any of these distributions and use the distros in standalone sessions.',
+			icon: 'tabler:wand',
+		},
+		{
+			title: 'Flatpaks',
+			description:
+				'Flatpaks too are supported. You can install them through the Flathub Store included in blendOS.',
+			icon: 'mdi:package-variant-closed',
+		}
+	],
+];
+---
+
+<section class="scroll-mt-16" id="features">
+	<div class="px-4 py-16 mx-auto max-w-6xl lg:px-8 lg:py-20">
+		<div class="mb-10 md:mx-auto sm:text-center md:mb-12 max-w-3xl">
+			<p class="text-base text-primary-600 dark:text-primary-200 font-semibold tracking-wide uppercase">Features</p>
+			<h2 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
+				What you get with <span class="whitespace-nowrap">blendOS</span>
+			</h2>
+			<p class="max-w-3xl mx-auto sm:text-center text-l text-gray-600 dark:text-slate-400">
+				Here are some of blendOS's features.
+			</p>
+		</div>
+		<div class="grid mx-auto space-y-6 md:grid-cols-2 md:space-y-0">
+			{
+				items.map((subitems) => (
+					<div class="space-y-8 sm:px-8">
+						{subitems.map(({ title, description, icon }) => (
+							<div class="flex flex-row max-w-md">
+								<div class="mb-4 mr-4">
+									<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-500 dark:bg-primary-700">
+										{icon && <Icon name={icon} class="w-6 h-6 text-white icon-light" />}
+									</div>
+								</div>
+								<div>
+									<h3 class="mb-3 text-xl font-bold">{title}</h3>
+									<p class="text-gray-600 dark:text-slate-400">{description}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon';
+import { Picture } from '@astrojs/image/components'
+---
+
+<section>
+	<div class="max-w-6xl mx-auto px-4 sm:px-6">
+		<div class="py-12 md:py-20">
+			<div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
+				<h1 class="text-5xl md:text-[3.50rem] font-bold leading-tighter tracking-tighter mb-4 font-heading">
+					<span class="auto-type"></span>
+				</h1>
+				<div class="max-w-3xl mx-auto">
+					<p class="text-xl text-gray-600 mb-8 dark:text-slate-400">
+						A seamless <span class="font-semibold underline decoration-wavy decoration-1 decoration-primary-600 underline-offset-2">blend</span> of all Linux distributions.
+					</p>
+					<div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
+						<div class="flex w-full sm:w-auto">
+							<a
+								class="btn btn-primary sm:mb-0 w-full"
+								href="#distros"
+							>
+								<Icon name="tabler:download" class="w-5 h-5 mr-1 -ml-1.5" /> Try blendOS
+							</a>
+						</div>
+						<div class="flex w-full sm:w-auto">
+							<a
+								class="btn w-full"
+								href="#features">Learn more</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="relative m-auto max-w-4xl">
+					<Picture
+						src={import('~/assets/images/hero.png')}
+						class="mx-auto rounded-md w-full"
+						widths={[400, 768, 1480]}
+						sizes="(max-width: 767px) 400px, (max-width: 1479px) 768px, 1480px"
+						style="box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 15px 20px 0 rgba(0, 0, 0, 0.19);"
+						alt="Hero Image"
+						aspectRatio={1480/833}
+						loading="eager"
+						width={1480}
+						height={833}
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

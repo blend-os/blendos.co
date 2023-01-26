@@ -1,0 +1,51 @@
+---
+import { Icon } from 'astro-icon';
+
+const items = [
+	[
+		{
+			question: 'Can the Flathub Store install apps directly, or does it just download flatpakrefs?',
+			answer: `Yep, the Flathub Store installs apps directly (using Souk-Next behind the scenes), instead of downloading their flatpakrefs and requiring manual installation.`,
+		},
+		{
+			question: 'Does blendOS use pacman, or its own package manager?',
+			answer: `Nope, blendOS uses blend, a package manager designed to work with multiple distributions. Although pacman can be used from a shell, it runs inside an Arch container.`,
+		},
+		{
+			question: 'How do I run system updates?',
+			answer: `You can run 'blend system-update' to run system updates (unlike on Arch, 'pacman -Syu' will simply update the Arch container and will not update blendOS).`,
+		},
+	],
+];
+---
+
+<div class="px-4 py-16 mx-auto max-w-6xl lg:py-20">
+	<div class="max-w-xl sm:mx-auto lg:max-w-2xl">
+		<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+			<h2 class="max-w-lg mb-4 text-3xl font-bold leading-none tracking-tight sm:text-4xl md:mx-auto font-heading">
+				Frequently Asked Questions
+			</h2>
+		</div>
+	</div>
+	<div class="max-w-screen-xl sm:mx-auto">
+		<div class="grid grid-cols-1 gap-x-8 gap-y-8 lg:gap-x-16">
+			{
+				items.map((subitems) => (
+					<div class="space-y-8">
+						{subitems.map(({ question, answer }) => (
+							<div>
+								<p class="mb-4 text-xl font-bold">
+									<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block" />
+									{question}
+								</p>
+								{answer.split('\n\n').map((paragraph) => (
+									<p class="text-gray-700 dark:text-gray-400 mb-2" set:html={paragraph} />
+								))}
+							</div>
+						))}
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,106 @@
+---
+import { Icon } from 'astro-icon';
+import { getHomePermalink, getRelativeLink } from '~/utils/permalinks';
+
+const links = [
+	{
+		title: 'blendOS',
+		items: [
+			{ title: 'Introduction', href: '/#' },
+			{ title: 'Features', href: '/#features' },
+			{ title: 'Distributions', href: '/#distros' },
+		],
+	},
+	{
+		title: 'Support',
+		items: [
+			{ title: 'Twitter', href: 'https://twitter.com/blend_os' },
+			{ title: 'Telegram', href: 'https://t.me/blendos' },
+			{ title: 'Discord', href: 'https://discord.gg/fvMpV8ZNxD' },
+		],
+	},
+];
+
+const social = [
+	{ label: 'Twitter', icon: 'tabler:brand-twitter', href: 'https://twitter.com/blend_os' },
+	{ label: 'Telegram', icon: 'tabler:brand-telegram', href: 'https://t.me/blendos' },
+	{ label: 'Discord', icon: 'tabler:brand-discord', href: 'https://discord.gg/fvMpV8ZNxD' },
+	{ label: 'RSS', icon: 'tabler:rss', href: getRelativeLink('/rss.xml') },
+	{ label: 'GitLab', icon: 'tabler:brand-github', href: 'https://github.com/blend-os' },
+];
+---
+
+<footer class="border-t border-gray-200 dark:border-slate-800">
+	<div class="max-w-6xl mx-auto px-4 sm:px-6">
+		<div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
+			<div class="col-span-12 lg:col-span-4">
+				<div class="mb-2">
+					<a class="inline-block font-bold text-xl" href={getHomePermalink()}>Unity</a>
+				</div>
+				<div class="text-sm text-gray-600">
+					<a
+						class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
+						href="/#distros">Try blendOS</a
+					> ·
+					<a
+						class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
+						href="#">Back to the top</a
+					>
+				</div>
+			</div>
+			{
+				links.map(({ title, items }) => (
+					<div class="col-span-6 md:col-span-3 lg:col-span-2">
+						<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{title}</div>
+						{items && Array.isArray(items) && items.length > 0 && (
+							<ul class="text-sm">
+								{items.map(({ title, href }) => (
+									<li class="mb-2">
+										<a
+											class="text-gray-600 hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
+											href={href}
+										>
+											{title}
+										</a>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+				))
+			}
+			<div class="col-span-6 md:col-span-3 lg:col-span-2">
+				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">About blendOS</div>
+					<ul class="text-sm text-gray-600 dark:text-gray-400">
+						blendOS is an operating system that seamlessly blends all your Linux distributions into one.
+					</ul>
+			</div>
+		</div>
+		<div class="md:flex md:items-center md:justify-between py-6 md:py-8">
+			<ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0">
+				{
+					social.map(({ label, href, icon }) => (
+						<li>
+							<a
+								class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+								aria-label={label}
+								href={href}
+							>
+								<Icon name={icon} class="w-5 h-5" />
+							</a>
+						</li>
+					))
+				}
+			</ul>
+
+			<div class="text-sm text-gray-700 mr-4 dark:text-slate-400">
+				<span
+					class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 float-left rounded-sm bg-[url(/favicon.svg)]"
+				>
+				</span>
+				Made with <span style="padding: 1px;">❤️</span> by <a class="text-blue-600 hover:underline dark:text-gray-200" href="https://about.ruds.io">Rudra Saraswat</a> ·
+				All rights reserved.
+			</div>
+		</div>
+	</div>
+</footer>

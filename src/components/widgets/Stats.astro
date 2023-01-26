@@ -1,0 +1,59 @@
+---
+---
+
+<div class="px-4 py-8 md:py-16 sm:px-6 mx-auto md:px-24 lg:px-8 lg:py-20 max-w-6xl" id="stats">
+	<div class="grid grid-cols-1 row-gap-8 md:grid-cols-3">
+		<div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">
+			<div class="text-4xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading" id="twitter-followers">loading</div>
+			<br>
+			<p class="text-sm font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">
+				Followers (Twitter)
+			</p>
+		</div>
+		<div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">
+			<div class="text-4xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading" id="tg-group-count">loading</div>
+			<br>
+			<p class="text-sm font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">Member Count<br>(Telegram Group)</p>
+		</div>
+		<div class="text-center">
+			<div class="text-4xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading" id="tg-chan-count">loading</div>
+			<br>
+			<p class="text-sm font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">Member Count<br>(Telegram Channel)</p>
+		</div>
+	</div>
+</div>
+
+<script>
+	function getTwitterFollowerCount() {
+		var XMLrequest = new XMLHttpRequest();
+		XMLrequest.open('GET', 'https://img.shields.io/twitter/follow/blendos.svg', false);
+		XMLrequest.send(null);
+
+		var mySVG = XMLrequest.responseXML.getElementsByTagName("svg")[0];
+		document.getElementById('twitter-followers').innerHTML = mySVG.getElementById('rlink').innerHTML.toUpperCase();
+	}
+
+	function getTgGroupCount() {
+		fetch('https://api.telegram.org/bot5600351141:AAGQsDigyMEudPtyoYPsyaKtlDuAj0y_Db0/getChatMembersCount?chat_id=@blendos')
+		  .then(function(response) {
+			return response.json();
+		  })
+		  .then(function(jsonResponse) {
+			document.getElementById('tg-group-count').innerHTML = jsonResponse['result'];
+		  })
+	}
+
+	function getTgChanCount() {
+		fetch('https://api.telegram.org/bot5600351141:AAGQsDigyMEudPtyoYPsyaKtlDuAj0y_Db0/getChatMembersCount?chat_id=@blendos')
+		  .then(function(response) {
+			return response.json();
+		  })
+		  .then(function(jsonResponse) {
+			document.getElementById('tg-chan-count').innerHTML = jsonResponse['result'];
+		  })
+	}
+
+	getTwitterFollowerCount();
+	getTgGroupCount();
+	getTgChanCount();
+</script>

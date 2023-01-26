@@ -1,0 +1,82 @@
+---
+import { SITE } from '~/config.mjs';
+import { getCanonical, getHomePermalink } from '~/utils/permalinks';
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Content2 from '~/components/widgets/Content2.astro';
+import DeDistro from '~/components/widgets/DeDistro.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const meta = {
+    title: SITE.title,
+    description: SITE.description,
+    canonical: getCanonical(getHomePermalink()),
+};
+---
+
+<Layout {meta}>
+    <Hero />
+    <Note />
+    <Features />
+    <Features2 />
+    <Content
+        image={{
+            src: import('~/assets/images/home/first-setup.png'),
+            alt: 'First Setup',
+        }}
+        >
+        <Fragment slot="content">
+            <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">First Setup</h3>
+            Ease into BlendOS with our user-friendly First Setup app, your one-stop guide to effortlessly setting up and navigating BlendOS
+            <br><br>
+            It's only available on GNOME, which is why we recommend GNOME for new users.
+        </Fragment>
+    </Content>
+    <Content2
+        image={{
+            src: import('~/assets/images/home/pkgmanagers.png'),
+            alt: 'Package Managers',
+        }}
+        >
+        <Fragment slot="content">
+            <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Use any package manager in the same blendOS shell</h3>
+            You can use <b>apt</b>/<b>apt-get</b>, <b>dnf</b>/<b>yum</b>, <b>pacman</b> and <b>yay</b> all together from the same blendOS shell, just
+            like you'd use them on their native distributions (Ubuntu, Fedora, and Arch respectively).
+        </Fragment>
+    </Content2>
+    <DeDistro></DeDistro>
+    <Content2
+        image={{
+            src: import('~/assets/images/home/flathub-ui.png'),
+            alt: 'Flathub Store',
+        }}
+        >
+        <Fragment slot="content">
+            <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Flathub Store</h3>
+            We've also made Flathub available as a desktop app, from which you can install Flatpaks directly.
+            <br><br>
+            Removal hasn't been implemented yet, so you'll have to use the <b>flatpak</b> CLI for now.
+        </Fragment>
+    </Content2>
+    <Content
+        image={{
+            src: import('~/assets/images/home/jade-gui.png'),
+            alt: 'blendOS Installer',
+        }}
+        >
+        <Fragment slot="content">
+            <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">blendOS Installer (Jade GUI)</h3>
+            <br>
+            We've adapted the excellent installer from Crystal Linux to help you install blendOS with a desktop environment or window manager of your choice (GNOME for new users; KDE Plasma, XFCE, Sway and i3 for users familiar with blendOS).
+        </Fragment>
+    </Content>
+    <FAQs />
+    <CallToAction />
+</Layout>
